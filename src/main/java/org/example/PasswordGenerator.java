@@ -1,8 +1,8 @@
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-class PasswordGenerator {
+
+public class PasswordGenerator {
     private List<String> wordList;
     private Random random;
 
