@@ -1,32 +1,27 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class PasswordGenerator {
     private List<String> wordList;
     private Random random;
 
-    public PasswordGenerator() {
-        wordList = new ArrayList<>();
+    public PasswordGenerator(List<String> wordList) {
+        this.wordList = wordList;
         random = new Random();
     }
 
-    public void addWord(String word) {
-        wordList.add(word);
-    }
-
     public String generatePassword(int length) {
-        if (wordList.isEmpty()) {
-            System.out.println("Word list is empty");
+        List<String> filteredWords = wordList.stream()
+                .filter(word -> word.length() == length)
+                .collect(Collectors.toList());
+
+        if (filteredWords.isEmpty()) {
+            System.out.println("No words with the specified length found.");
             return "";
         }
 
-        StringBuilder password = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            String randomWord = wordList.get(random.nextInt(wordList.size()));
-            password.append(randomWord);
-        }
-
-        return password.toString();
+        String randomWord = filteredWords.get(random.nextInt(filteredWords.size()));
+        return randomWord;
     }
 }
