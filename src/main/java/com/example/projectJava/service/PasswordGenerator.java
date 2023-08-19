@@ -1,4 +1,4 @@
-package com.example.projectJava.domain;
+package com.example.projectJava.service;
 
 import org.springframework.stereotype.Component;
 
